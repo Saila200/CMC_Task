@@ -1,7 +1,6 @@
 export const WAIT_MEDIUM = 10;
 export const WAIT_SHORT = 5;
 
-export const TITLE = "Sydney Forecast";
 export enum City {
   SYD = "Sydney",
   MEL = "Melbourne",
@@ -31,4 +30,15 @@ export enum Months {
   OCT = "October",
   NOV = "November",
   DEC = "December"
+}
+
+export enum Day {
+  SUN = "Sunday",
+  MON = "Monday",
+  TUE = "Tuesday",
+  WED = "Wednesday",
+  THU = "Thursday",
+  FRI = "Friday",
+  SAT = "Saturday",
+
 }

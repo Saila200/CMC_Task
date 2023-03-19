@@ -1,5 +1,5 @@
 const { I } = inject();
-import { WAIT_SHORT, City } from "../helpers/container/constants";
+import { WAIT_SHORT, City, Day } from "../helpers/container/constants";
 import { multiFunctions } from "../components/multiFunctions";
 import BasePage from "./Base";
 
@@ -64,13 +64,19 @@ class forecastPage extends BasePage {
       this.forecastTable
     );
     for (var i = 1; i <= noOfForecastTables; i++) {
-      if (i === 3) {
-        I.say("Forecast table is not existed");
-        i = i + 1;
-      }
+     
       this.forecastDateLocator = locate(`//*[@id="content"]/div[${i}]/h2`);
       I.waitForElement(this.forecastDateLocator);
       let forecastDate = await I.grabTextFrom(this.forecastDateLocator);
+      console.log(forecastDate)
+      let splitforecastDate = forecastDate.split(" ");
+      console.log(splitforecastDate[0])
+      console.log(splitforecastDate[5])
+
+      if ( splitforecastDate[0] === Day.MON || splitforecastDate[5] === Day.MON ) {
+        I.say("Forecast table is not existed");
+        i = i + 1;
+      }
 
       if (this.forecastDateFromNow == forecastDate) {
         I.say("Forecast Date is matched");
