@@ -7,6 +7,7 @@ export default class BasePage {
   currentDayIndex: number;
   dayfromNow: string;
   todayWeather: CodeceptJS.LocatorOrString;
+  tryTo = codeceptjs.container.plugins("tryTo")
   constructor() {
     this.todayWeather = locate("#today_refresh");
   }

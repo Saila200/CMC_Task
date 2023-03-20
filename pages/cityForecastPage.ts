@@ -66,17 +66,16 @@ class forecastPage extends BasePage {
     for (var i = 1; i <= noOfForecastTables; i++) {
      
       this.forecastDateLocator = locate(`//*[@id="content"]/div[${i}]/h2`);
-      I.waitForElement(this.forecastDateLocator);
+      let forecasttableExist: boolean = await this.tryTo(() =>I.waitForElement(this.forecastDateLocator, WAIT_SHORT));
+      if(!forecasttableExist)
+      {
+      I.say("Forecast table is not existed");
+      i = i + 1;
+      this.forecastDateLocator = locate(`//*[@id="content"]/div[${i}]/h2`);
+      }
+
       let forecastDate = await I.grabTextFrom(this.forecastDateLocator);
       console.log(forecastDate)
-      let splitforecastDate = forecastDate.split(" ");
-      console.log(splitforecastDate[0])
-      console.log(splitforecastDate[5])
-
-      if ( splitforecastDate[0] === Day.MON || splitforecastDate[5] === Day.MON ) {
-        I.say("Forecast table is not existed");
-        i = i + 1;
-      }
 
       if (this.forecastDateFromNow == forecastDate) {
         I.say("Forecast Date is matched");
